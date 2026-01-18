@@ -1,0 +1,28 @@
+.head {
+    display: flex;
+    justify-content: center;
+}
+
+.main-layout {
+    display: flex;
+}
+
+.main-layout > div > h3 {
+    background-color: rgb(8, 85, 20);
+    border: 0px solid;
+    border-radius: 5px;
+    padding-left: 5px;
+    margin: 0px;
+}
+
+.main-layout > div {
+    padding: 0px 20px 20px 20px;
+}
+
+.main-layout > div > ul > * {
+    padding: 10px;
+}
+
+.main-layout > .expense {
+    border-left: 1px solid green;
+}
