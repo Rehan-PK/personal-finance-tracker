@@ -12,7 +12,7 @@ import axios from 'axios';
 // };
 // getExpenses();
 
-function IncomeItem({name, amount}) {
+function IncomeItem({ name, amount }) {
     return (
         <>
             <li>
@@ -32,7 +32,7 @@ function IncomeItem({name, amount}) {
     )
 }
 
-function ExpenseItem({name, amount}) {
+function ExpenseItem({ name, amount }) {
     return (
         <>
             <li>
@@ -65,13 +65,13 @@ const expenses = [
 
 export default function ExpenseApp() {
     const [array, setArray] = useState([]);
-    
+
     const fetchAPI = async () => {
         const response = await axios.get('http://localhost:8080/api');
         setArray(response.data.fruits);
         console.log(response.data.fruits)
     };
-    
+
     useEffect(() => {
         fetchAPI();
     }, [])
@@ -81,17 +81,17 @@ export default function ExpenseApp() {
         // store data in database
         // show data on the web app
     }
-    
+
     return (
         <>
-        
-        <div className="head">
-            <h1>Expense app1</h1>
-        </div>
 
-        <div className="main-layout">
-        
-            <div className="income">
+            <div className="head">
+                <h1>Expense app1</h1>
+            </div>
+
+            <div className="main-layout">
+
+                {/* <div className="income">
                 <h3>Income items</h3>
                 <ul>
                     <IncomeItem name={"dummy item 2"} amount={5000} />
@@ -116,19 +116,33 @@ export default function ExpenseApp() {
                         })
                     }
                 </ul>
+            </div> */}
+
+                {/* create an add button here */}
+                <form action="http://localhost:8080/submit-form" method="POST">
+                    <label for="entry">Select entry type:</label>
+                    <select id="entry" name="entry">
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+
+                    <label for="detail">Detail:</label>
+                    <input type="text" id="detail" name="detail" required />
+
+                    <button type="submit">Submit</button>
+                </form>
+
             </div>
-        
-        </div>
-        
-        <div className="main-layout">
-            <div className="expense">
-                <ul>
-                    {array.map((fruit, index) => {
-                        return <li key={index}>{fruit}</li>;
-                    })}
-                </ul>
+
+            <div className="main-layout">
+                <div className="expense">
+                    <ul>
+                        {array.map((fruit, index) => {
+                            return <li key={index}>{fruit}</li>;
+                        })}
+                    </ul>
+                </div>
             </div>
-        </div>
 
         </>
     )

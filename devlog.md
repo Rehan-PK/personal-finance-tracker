@@ -14,6 +14,10 @@ PLAN:
     4- create a monthly summary tab also, that summarizes income/expense into category & then totals the income expenses
         4(A) here i need to create a proper react app that must have:
             i- function to add income, expense
+            
+            *** 12-Feb-26: (revision) need to make income/expense & amount & date field -all editable, with a submit button
+            - created a drop-down in react, with submit button, now need to fetch submitted data in express and use it, detail opened in browser....
+
             ii- store income, exp data in a database
             iii- retrieve data from database and show in monthly summary    
         1-Jan-26:
