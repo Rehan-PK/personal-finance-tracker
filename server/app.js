@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import db from './db.js';
+
 const app = express();
 const corsOptions = {
     origin: ['http://localhost:5173'],
@@ -21,7 +23,9 @@ app.use(
     })
 );
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 app.get("/api", (req, res) => {
     res.json({
@@ -29,8 +33,20 @@ app.get("/api", (req, res) => {
     });
 });
 
+// below code on 5-Mar-26 for connecting to database & fetching data
+app.get('/expenses', async (req, res) => {
+    try {
+        const result = await db.query('SELECT * FROM expenses');
+        res.json(result.rows);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Server error');
+    }
+});
+
 app.post('/submit-form', (req, res) => {
     try {
+        console.log(req.body);
         const detail = req.body.detail;
         const entry = req.body.entry;
         if (!detail || !entry) {
